@@ -1,6 +1,89 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 
+const BackGroundlasers = () => {
+  return (
+    <>
+      <motion.div
+        initial={{ scale: 0.9, y: "-20vh" }}
+        animate={{ scale: 1, y: "120vh" }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut",
+
+          type: "tween",
+          stiffness: 100,
+          damping: 10,
+          mass: 0.5,
+          velocity: 0.5,
+          restDelta: 0.001,
+          restSpeed: 0.001,
+          repeatDelay: 0.3,
+        }}
+        className="w-[80%] h-[10%] bg-green-500 absolute top-[0%] left-[15%] blur-[12rem] opacity-10"
+      ></motion.div>
+      <motion.div
+        initial={{ scale: 0.9, y: "-20vh" }}
+        animate={{ scale: 1, y: "120vh" }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut",
+
+          type: "tween",
+          stiffness: 100,
+          damping: 10,
+          mass: 0.5,
+          velocity: 0.5,
+          restDelta: 0.001,
+          restSpeed: 0.001,
+          repeatDelay: 0.3,
+        }}
+        className="w-[70%] h-[10%] bg-green-500 absolute top-[0%] left-[15%] blur-[6rem] opacity-50"
+      ></motion.div>
+      <motion.div
+        initial={{ scale: 0.9, y: "-20vh" }}
+        animate={{ scale: 1, y: "120vh" }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut",
+
+          type: "tween",
+          stiffness: 100,
+          damping: 10,
+          mass: 0.5,
+          velocity: 0.5,
+          restDelta: 0.001,
+          restSpeed: 0.001,
+          repeatDelay: 0.3,
+        }}
+        className="w-[70%] h-[5%] bg-green-500 absolute top-[0%] left-[15%] blur-[2rem] opacity-40"
+      ></motion.div>
+      <motion.div
+        initial={{ scale: 0.9, y: "-20vh" }}
+        animate={{ scale: 1, y: "120vh" }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut",
+
+          type: "tween",
+          stiffness: 100,
+          damping: 10,
+          mass: 0.5,
+          velocity: 0.5,
+          restDelta: 0.001,
+          restSpeed: 0.001,
+          repeatDelay: 0.3,
+        }}
+        className="w-[70%] h-[2%] bg-green-500 absolute top-[5%] left-[15%] blur-[0.5rem] opacity-30"
+      ></motion.div>
+    </>
+  );
+};
+
 function App() {
   // const [paddings, setPaddings] = useState({
   //   paddingTop: window.innerHeight / 2,
@@ -27,30 +110,69 @@ function App() {
   }, []);
 
   return (
-    <div className="w-screen h-screen bg-white">
-      <h1 className="text-4xl font-bold text-center p-4 bg-primary text-primary-text">
+    <div className="w-screen h-screen bg-bg relative overflow-hidden">
+      {/* <h1 className="text-4xl font-bold text-center p-4 bg-primary text-primary-text">
         Fingerprint App
-      </h1>
-      <div className="w-full h-full bg-blue-800 opacity-30 blur-2xl absolute z-70"></div>
+      </h1> */}
+      <div className="w-full h-full opacity-20  absolute z-70">
+        <img
+          src="/images/pattern-small.png"
+          className="absolute inset-0 w-full h-full object-cover opacity-100 z-0 "
+        />
+      </div>
       <div
         className="w-80 h-80
         absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100
-       bg-secondary-bg rounded-3xl border-15 border-secondary-bg overflow-hidden"
+       bg-secondary-bg rounded-4xl  overflow-hidden opacity-70"
       >
         <img src="" className=" object-cover w-90 h-90 bg-secondary-bg " />
       </div>
+      {/* most top container */}
       <div
+        className="w-80 h-80
+        absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100
+       bg-secondary-bg-transparent rounded-3xl border-13 border-secondary-bg-border overflow-hidden opacity-100"
+      ></div>
+
+      {/* <div
         id="spotlight"
         className="w-96 h-96
         absolute z-40
         bg-red-500
         rounded-full pointer-events-none
-        blur-3xl
+        blur-[10rem]
         "
         style={{
           transform: `translate3d(${mousePosition.x}px, ${mousePosition.y}px, 0)`,
         }}
-      ></div>
+      ></div> */}
+      {/* <motion.div
+        initial={{ scale: 0.9, y: 0 }}
+        animate={{ scale: 1, y: -20 }}
+        transition={{
+          duration: 0.9,
+          repeat: Infinity,
+          repeatType: "mirror",
+          ease: "easeInOut",
+          delay: 0.2,
+        }}
+        id="spotlight"
+        className="w-50 h-50 absolute z-40 bg-red-500 rounded-full left-1/7 bottom-1/7 blur-[6rem] opacity-20"
+      ></motion.div>
+      <motion.div
+        initial={{ scale: 0.9, y: -10 }}
+        animate={{ scale: 1, y: [-40] }}
+        transition={{
+          duration: 0.9,
+          repeat: Infinity,
+          repeatType: "mirror",
+          ease: "easeInOut",
+          delay: 0.2,
+        }}
+        id="spotlight"
+        className="w-50 h-50 absolute z-40 bg-red-500 rounded-full left-1/3 bottom-1/5 blur-[6rem] opacity-40"
+      ></motion.div> */}
+      <BackGroundlasers />
     </div>
   );
 }
