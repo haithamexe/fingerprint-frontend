@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const BackGroundlasers = () => {
   return (
@@ -120,6 +121,7 @@ function App() {
           className="absolute inset-0 w-full h-full object-cover opacity-100 z-0 "
         />
       </div>
+
       <div
         className="w-80 h-80
         absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100
@@ -173,6 +175,21 @@ function App() {
         className="w-50 h-50 absolute z-40 bg-red-500 rounded-full left-1/3 bottom-1/5 blur-[6rem] opacity-40"
       ></motion.div> */}
       <BackGroundlasers />
+      <div className="w-40 h-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-90 pointer-events-none">
+        <img
+          src="/images/fingerprint-2.png"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <div className="w-40 h-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100 pointer-events-none">
+        <DotLottieReact
+          src="https://lottie.host/b41ed688-7bdf-4fd6-b809-92d8f2c71c2f/pPrsLcCXpK.lottie"
+          loop
+          autoplay
+          speed={0.5}
+          style={{ width: "100%", height: "100%" }}
+        />
+      </div>
     </div>
   );
 }
