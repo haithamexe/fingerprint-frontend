@@ -353,7 +353,7 @@ const MainContent = () => {
           <DotLottieReact
             src="https://lottie.host/b41ed688-7bdf-4fd6-b809-92d8f2c71c2f/pPrsLcCXpK.lottie"
             loop
-            autoplays
+            autoplay
             style={{
               width: "100%",
               height: "100%",
@@ -361,9 +361,9 @@ const MainContent = () => {
               position: "absolute",
               top: 0,
               left: 0,
-              opacity: 0.7,
+              opacity: 0.3,
             }}
-            speed={0.4}
+            speed={0.7}
           />
 
           <img
