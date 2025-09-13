@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import { FaUserPlus } from "react-icons/fa";
 
 const BackGroundlasers = () => {
   const [showInnerLaser, setShowInnerLaser] = useState(false);
@@ -132,6 +133,35 @@ const BackGroundlasers = () => {
   );
 };
 
+const FadeInTextWithMaskByWords = ({
+  text = "sample Text",
+  className = "text-2xl md:text-4xl lg:text-6xl font-bold",
+  duration = 0.5,
+  delay = 0.07,
+}) => (
+  <motion.div className={"flex flex-wrap " + className}>
+    {text.split(" ").map((word, index) => (
+      <motion.span
+        key={index}
+        className={"inline-block whitespace-nowrap mr-3"}
+        initial={{ y: "100%", opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{
+          duration: duration,
+          ease: "easeInOut",
+          type: "spring",
+          stiffness: 70,
+          damping: 20,
+          delay: index * delay,
+        }}
+        viewport={{ once: true }}
+      >
+        {word}
+      </motion.span>
+    ))}
+  </motion.div>
+);
+
 function App() {
   // const [paddings, setPaddings] = useState({
   //   paddingTop: window.innerHeight / 2,
@@ -159,9 +189,34 @@ function App() {
 
   return (
     <div className="w-screen h-screen bg-bg relative overflow-hidden">
-      {/* <h1 className="text-4xl font-bold text-center p-4 bg-primary text-primary-text">
-        Fingerprint App
+      {/* <h1 className="absolute top-5 left-10 text-5xl font-bold text-text z-500 select-none font-title">
+        Fingerprint Matching App
       </h1> */}
+      <FadeInTextWithMaskByWords
+        text="Fingerprint Matching App"
+        delay={0.5}
+        className="absolute top-5 left-10 text-5xl font-bold text-text z-500 select-none font-title"
+      />
+      <div className="absolute bottom-7 left-10  font-bold text-text z-500 select-none font-title">
+        {/* <h1>
+          Sponsered By <span> Aswar </span>X<span> HurryApp Hackathon 3 </span>
+        </h1> */}
+        <FadeInTextWithMaskByWords
+          text="Sponsered By Aswar X HurryApp Hackathon 3"
+          delay={0.1}
+          className=""
+        />
+      </div>
+
+      <div className="absolute bottom-7 right-10  font-bold text-text z-500 select-none font-title">
+        <h1 className="flex items-center justify-center gap-2 bg-accent px-2 py-1 rounded-full text-black">
+          Add User
+          <span>
+            <FaUserPlus />
+          </span>
+        </h1>
+      </div>
+
       <div className="w-full h-full opacity-20  absolute z-70">
         <img
           src="/images/pattern-small.png"

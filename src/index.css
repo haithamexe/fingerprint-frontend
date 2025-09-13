@@ -1,14 +1,25 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "BoldPixel";
+  src: url("/fonts/BoldPixels.ttf") format("truetype"),
+    url("/fonts/BoldPixels.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   --color-bg: #000000;
   --color-secondary-bg: #000000;
   --color-secondary-bg-transparent: #00000000;
   --color-tertiary-bg: #252525;
   --color-secondary-bg-border: #050505;
-  --color-text: #1d1d1d;
+  --color-text: #ffffff;
   --color-accent: #6eff75;
   --color-border: #313244;
   --color-input-bg: #313244;
   --color-input-text: #cdd6f4;
+
+  --font-title: "BoldPixel", sans-serif;
 }
