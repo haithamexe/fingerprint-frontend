@@ -413,7 +413,11 @@ const MainContent = ({
               setStartButton(true);
             }}
           >
-            {!startButton ? "Start Scanning" : "Scanning..."}
+            {matching
+              ? "Matched"
+              : !startButton
+              ? "Start Scanning"
+              : "Scanning..."}
           </motion.h1>
         </>
       </div>
