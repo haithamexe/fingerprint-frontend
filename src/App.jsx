@@ -313,7 +313,7 @@ function App() {
           </span>
         </h1>
       </motion.div>
-      <div className="w-full h-full opacity-20  absolute z-70">
+      <div className="w-full h-full opacity-30  absolute z-70">
         <img
           src="/images/pattern-small.png"
           className="absolute inset-0 w-full h-full object-cover opacity-100 z-0 "
