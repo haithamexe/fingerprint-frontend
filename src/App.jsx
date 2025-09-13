@@ -428,6 +428,8 @@ function App() {
     const x = rect.width / 2;
     const y = rect.height / 2;
 
+    // new comment
+
     setMousePosition({ x: event.clientX - x, y: event.clientY - y });
   };
 
