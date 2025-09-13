@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { FaUserPlus } from "react-icons/fa";
 
@@ -253,86 +253,63 @@ const MoreLLasers = () => {
   );
 };
 
-function App() {
-  // const [paddings, setPaddings] = useState({
-  //   paddingTop: window.innerHeight / 2,
-  //   paddingLeft: window.innerWidth / 2,
-  // });
-
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  const MouseSpotlight = (event) => {
-    const spotlight = document.getElementById("spotlight");
-    const rect = spotlight.getBoundingClientRect();
-
-    const x = rect.width / 2;
-    const y = rect.height / 2;
-
-    setMousePosition({ x: event.clientX - x, y: event.clientY - y });
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousemove", MouseSpotlight);
-    return () => {
-      document.removeEventListener("mousemove", MouseSpotlight);
-    };
-  }, []);
-
+const MainContent = () => {
   return (
-    <div className="w-screen h-screen bg-bg relative overflow-hidden">
-      <FadeInTextWithMaskByWords
-        text="Fingerprint Matching App"
-        delay={0.5}
-        className="absolute top-5 left-10 text-5xl font-bold text-text z-500 select-none font-title"
-      />
-      <div className="absolute bottom-7 left-10  font-bold text-text z-500 select-none font-title">
+    <>
+      <div className="w-screen h-screen bg-bg relative overflow-hidden">
         <FadeInTextWithMaskByWords
-          text="Sponsered By Aswar X HurryApp Hackathon 3"
-          delay={0.1}
-          className=""
+          text="Fingerprint Matching App"
+          delay={0.5}
+          className="absolute top-5 left-10 text-5xl font-bold text-text z-500 select-none font-title"
         />
-      </div>
-      <motion.div
-        initial={{ scale: 0.9, y: 10, opacity: 0 }}
-        animate={{ scale: 1, y: 0, opacity: 1 }}
-        transition={{
-          duration: 0.4,
-          repeatType: "mirror",
-          ease: "easeInOut",
-          delay: 0.8,
-          type: "spring",
-          stiffness: 100,
-          damping: 10,
-        }}
-        className="absolute bottom-5 right-10  font-bold text-text z-500 select-none font-title"
-      >
-        <h1 className="flex items-center justify-center gap-2 bg-accent px-2 py-1 rounded-full text-black">
-          Add User
-          <span>
-            <FaUserPlus />
-          </span>
-        </h1>
-      </motion.div>
-      <div className="w-full h-full opacity-30  absolute z-70">
-        <img
-          src="/images/pattern-small.png"
-          className="absolute inset-0 w-full h-full object-cover opacity-100 z-0 "
-        />
-      </div>
-      <div
-        className="w-80 h-80
+        <div className="absolute bottom-7 left-10  font-bold text-text z-500 select-none font-title">
+          <FadeInTextWithMaskByWords
+            text="Sponsered By Aswar X HurryApp Hackathon 3"
+            delay={0.1}
+            className=""
+          />
+        </div>
+        <motion.div
+          initial={{ scale: 0.9, y: 10, opacity: 0 }}
+          animate={{ scale: 1, y: 0, opacity: 1 }}
+          transition={{
+            duration: 0.4,
+            repeatType: "mirror",
+            ease: "easeInOut",
+            delay: 0.8,
+            type: "spring",
+            stiffness: 100,
+            damping: 10,
+          }}
+          className="absolute bottom-5 right-10  font-bold text-text z-500 select-none font-title"
+        >
+          <h1 className="flex items-center justify-center gap-2 bg-accent px-2 py-1 rounded-full text-black">
+            Add User
+            <span>
+              <FaUserPlus />
+            </span>
+          </h1>
+        </motion.div>
+        <div className="w-full h-full opacity-30  absolute z-70">
+          <img
+            src="/images/pattern-small.png"
+            className="absolute inset-0 w-full h-full object-cover opacity-100 z-0 "
+          />
+        </div>
+        <div
+          className="w-80 h-80
         absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100
        bg-secondary-bg rounded-4xl  overflow-hidden opacity-70"
-      >
-        <img src="" className=" object-cover w-90 h-90 bg-secondary-bg " />
-      </div>
-      {/* most top container */}
-      <div
-        className="w-80 h-80
+        >
+          <img src="" className=" object-cover w-90 h-90 bg-secondary-bg " />
+        </div>
+        {/* most top container */}
+        <div
+          className="w-80 h-80
         absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100
        bg-secondary-bg-transparent rounded-3xl border-13 border-secondary-bg-border overflow-hidden opacity-100"
-      ></div>
-      {/* <div
+        ></div>
+        {/* <div
         id="spotlight"
         className="w-96 h-96
         absolute z-40
@@ -344,7 +321,7 @@ function App() {
           transform: `translate3d(${mousePosition.x}px, ${mousePosition.y}px, 0)`,
         }}
       ></div> */}
-      {/* <motion.div
+        {/* <motion.div
         initial={{ scale: 0.9, y: 0 }}
         animate={{ scale: 1, y: -20 }}
         transition={{
@@ -370,41 +347,108 @@ function App() {
         id="spotlight"
         className="w-50 h-50 absolute z-40 bg-red-500 rounded-full left-1/3 bottom-1/5 blur-[6rem] opacity-40"
       ></motion.div> */}
-      <BackGroundlasers />
-      <MoreLLasers />
-      <div className="w-40 h-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-90 pointer-events-none">
-        <img
-          src="/images/fingerprint-2.png"
-          className="w-full h-full object-cover"
-        />
+        <BackGroundlasers />
+        <MoreLLasers />
+        <motion.div className="w-40 h-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-90 pointer-events-none">
+          <DotLottieReact
+            src="https://lottie.host/b41ed688-7bdf-4fd6-b809-92d8f2c71c2f/pPrsLcCXpK.lottie"
+            loop
+            autoplays
+            style={{
+              width: "100%",
+              height: "100%",
+              filter: "grayscale(1) brightness(0.001)    invert(1)",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              opacity: 0.7,
+            }}
+            speed={0.4}
+          />
+
+          <img
+            src="/images/fingerprint-2.png"
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
       </div>
-      <motion.div
-        initial={{ scale: 3 }}
-        animate={{ scale: 1 }}
-        transition={{
-          duration: 0.6,
-          delay: 1.7,
-          type: "spring",
-          stiffness: 100,
-          damping: 10,
-          mass: 0.5,
-          velocity: 0.5,
-          restDelta: 0.001,
-          restSpeed: 0.001,
-          ease: "easeInOut",
-          bounce: 5,
-        }}
-        className="w-40 h-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100 pointer-events-none"
-      >
-        <DotLottieReact
-          src="https://lottie.host/b41ed688-7bdf-4fd6-b809-92d8f2c71c2f/pPrsLcCXpK.lottie"
-          loop
-          autoplay
-          speed={0.7}
-          style={{ width: "100%", height: "100%" }}
-        />
-      </motion.div>
-    </div>
+    </>
+  );
+};
+
+function App() {
+  // const [paddings, setPaddings] = useState({
+  //   paddingTop: window.innerHeight / 2,
+  //   paddingLeft: window.innerWidth / 2,
+  // });
+
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1500); // Simulate a 3-second loading time
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const MouseSpotlight = (event) => {
+    const spotlight = document.getElementById("spotlight");
+    const rect = spotlight.getBoundingClientRect();
+
+    const x = rect.width / 2;
+    const y = rect.height / 2;
+
+    setMousePosition({ x: event.clientX - x, y: event.clientY - y });
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousemove", MouseSpotlight);
+    return () => {
+      document.removeEventListener("mousemove", MouseSpotlight);
+    };
+  }, []);
+
+  return (
+    <>
+      {loading ? (
+        <AnimatePresence>
+          <div className="w-screen h-screen bg-bg flex items-center justify-center relative overflow-hidden">
+            <motion.div
+              initial={{ scale: 3 }}
+              animate={{ scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                duration: 0.8,
+                delay: 1.4,
+                type: "spring",
+                stiffness: 100,
+                damping: 10,
+                mass: 0.5,
+                restDelta: 0.001,
+                restSpeed: 0.001,
+                ease: "easeInOut",
+                bounce: 5,
+              }}
+              className="w-40 h-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100 pointer-events-none"
+            >
+              <DotLottieReact
+                // src="https://lottie.host/b41ed688-7bdf-4fd6-b809-92d8f2c71c2f/pPrsLcCXpK.lottie"
+                src="https://lottie.host/cfdb9a9c-9dce-458e-b9d3-6829847db2ec/FdYZECv8Wa.lottie"
+                loop
+                autoplay
+                speed={2}
+                style={{ width: "100%", height: "100%" }}
+              />
+            </motion.div>
+          </div>
+        </AnimatePresence>
+      ) : (
+        <MainContent />
+      )}
+    </>
   );
 }
 
