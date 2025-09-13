@@ -5,6 +5,7 @@ import { FaUserPlus } from "react-icons/fa";
 
 import fingerprintUrl from "./assets/images/fingerprint-2.png";
 import patternUrl from "./assets/images/pattern-small.png";
+import fingerprints from "./utils/fingerprints";
 
 const BackGroundlasers = () => {
   const [showInnerLaser, setShowInnerLaser] = useState(false);
@@ -409,6 +410,42 @@ const MainContent = ({ matchMenu, setMatchMenu }) => {
   );
 };
 
+const MatchingContent = () => {
+  return (
+    <div className="w-1/2 h-full absolute top-20 right-0 z-500 ">
+      <section>
+        <h1>Fingerprints Informations</h1>
+        <div className="flex flex-wrap gap-2 mt-5  ">
+          {fingerprints.map((fingerprint, index) => (
+            <div
+              className="p-1 bg-gray-600 rounded-xl overflow-hidden border-4 border-white w-32 h-40 "
+              key={index}
+            >
+              <div className="w-full h-[70%] p-3">
+                <img
+                  src={fingerprint.img}
+                  alt={`Fingerprint ${index}`}
+                  className="w-full h-full object-cover "
+                />
+              </div>
+              <div className="text-sm flex flex-wrap items-center justify-between text-white w-full px-3">
+                <p>{fingerprint.match}</p>
+                <p className="w-full flex items-center justify-between">
+                  <span className="">Accuracy</span>
+                  {fingerprint.accuracy}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+      <section>
+        <h1>User Informations</h1>
+      </section>
+    </div>
+  );
+};
+
 function App() {
   // const [paddings, setPaddings] = useState({
   //   paddingTop: window.innerHeight / 2,
@@ -495,7 +532,10 @@ function App() {
           </div>
         </AnimatePresence>
       ) : (
-        <MainContent matchMenu={matchMenu} setMatchMenu={setMatchMenu} />
+        <>
+          <MainContent matchMenu={matchMenu} setMatchMenu={setMatchMenu} />
+          {matchMenu && <MatchingContent />}
+        </>
       )}
     </>
   );
