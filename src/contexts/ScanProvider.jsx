@@ -7,7 +7,7 @@ export const useScan = () => useContext(ScanContext);
 const ScanProvider = ({ children }) => {
   const [deviceIsMounted, setDeviceMounted] = useState(false);
   const [scanLoading, setScanLoading] = useState(false);
-  const [isMatching, setIsMatching] = useState(true);
+  const [isMatching, setIsMatching] = useState(false);
   const [uuid, setUuid] = useState(null);
   const [startButton, setStartButton] = useState(false);
   const [matching, setMatching] = useState({});
