@@ -2,7 +2,7 @@ const fingerprints = [
   {
     id: 7,
     match: "Match",
-    accuracy: "100%",
+    accuracy: "67.3%",
     img: "/images/fingerPrints/5.BMP",
   },
   // {
