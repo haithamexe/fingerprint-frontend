@@ -129,6 +129,22 @@ const BackGroundlasers = () => {
         className="w-73 h-2 bg-green-500 absolute top-[6%] left-[50%] transform -translate-x-1/2 z-300"
         style={{ opacity: showInnerLaser ? 1 : 0 }}
       ></motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: 0.7,
+          repeat: Infinity,
+          ease: "easeInOut",
+          repeatType: "mirror",
+          delay: 1,
+
+          repeatDelay: 1,
+          // Add any additional properties here
+        }}
+        className="w-5 h-5 bg-red-500 absolute rounded-full right-10 top-8 z-500"
+        style={{ opacity: showInnerLaser ? 1 : 0 }}
+      ></motion.div>
     </>
   );
 };
@@ -139,11 +155,15 @@ const FadeInTextWithMaskByWords = ({
   duration = 0.5,
   delay = 0.07,
 }) => (
-  <motion.div className={"flex flex-wrap " + className}>
+  <motion.div
+    onMouseOver={textGlitchEffect}
+    data-text={text}
+    className={"flex flex-wrap " + className}
+  >
     {text.split(" ").map((word, index) => (
       <motion.span
         key={index}
-        className={"inline-block whitespace-nowrap mr-3"}
+        className={"inline-block whitespace-nowrap mr-3 pointer-events-none"}
         initial={{ y: "100%", opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{
@@ -161,6 +181,31 @@ const FadeInTextWithMaskByWords = ({
     ))}
   </motion.div>
 );
+
+const textGlitchEffect = (e) => {
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+  let iteration = 0;
+
+  const interval = setInterval(() => {
+    e.target.innerText = e.target.innerText
+      .split("")
+      .map((letter, index) => {
+        if (index < iteration) {
+          return e.target.getAttribute("data-text")[index];
+        }
+        return letters[Math.floor(Math.random() * letters.length)];
+      })
+      .join("");
+
+    if (iteration > 5) {
+      clearInterval(interval);
+      e.target.innerText = e.target.getAttribute("data-text");
+    }
+
+    iteration += 1 / 3;
+  }, 30);
+};
 
 function App() {
   // const [paddings, setPaddings] = useState({
@@ -189,18 +234,12 @@ function App() {
 
   return (
     <div className="w-screen h-screen bg-bg relative overflow-hidden">
-      {/* <h1 className="absolute top-5 left-10 text-5xl font-bold text-text z-500 select-none font-title">
-        Fingerprint Matching App
-      </h1> */}
       <FadeInTextWithMaskByWords
         text="Fingerprint Matching App"
         delay={0.5}
         className="absolute top-5 left-10 text-5xl font-bold text-text z-500 select-none font-title"
       />
       <div className="absolute bottom-7 left-10  font-bold text-text z-500 select-none font-title">
-        {/* <h1>
-          Sponsered By <span> Aswar </span>X<span> HurryApp Hackathon 3 </span>
-        </h1> */}
         <FadeInTextWithMaskByWords
           text="Sponsered By Aswar X HurryApp Hackathon 3"
           delay={0.1}
@@ -208,14 +247,27 @@ function App() {
         />
       </div>
 
-      <div className="absolute bottom-7 right-10  font-bold text-text z-500 select-none font-title">
+      <motion.div
+        initial={{ scale: 0.9, y: 10, opacity: 0 }}
+        animate={{ scale: 1, y: 0, opacity: 1 }}
+        transition={{
+          duration: 0.4,
+          repeatType: "mirror",
+          ease: "easeInOut",
+          delay: 0.8,
+          type: "spring",
+          stiffness: 100,
+          damping: 10,
+        }}
+        className="absolute bottom-5 right-10  font-bold text-text z-500 select-none font-title"
+      >
         <h1 className="flex items-center justify-center gap-2 bg-accent px-2 py-1 rounded-full text-black">
           Add User
           <span>
             <FaUserPlus />
           </span>
         </h1>
-      </div>
+      </motion.div>
 
       <div className="w-full h-full opacity-20  absolute z-70">
         <img
