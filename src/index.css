@@ -11,15 +11,37 @@
 
 @theme {
   --color-bg: #000000;
-  --color-secondary-bg: #000000;
+  --color-secondary-bg: #080808;
   --color-secondary-bg-transparent: #00000000;
   --color-tertiary-bg: #252525;
-  --color-secondary-bg-border: #050505;
+  --color-secondary-bg-border: #0e0e0e;
   --color-text: #ffffff;
   --color-accent: #6eff75;
   --color-border: #313244;
   --color-input-bg: #313244;
   --color-input-text: #cdd6f4;
 
+  --color-crystal-clear-00: rgba(201, 201, 201, 0.178);
+  --color-crystal-clear-0: rgba(107, 107, 107, 0.207);
+  --color-crystal-clear-1: rgba(145, 145, 145, 0.355);
+  --color-crystal-clear-2: rgba(255, 255, 255, 0.655);
+  --color-crystal-clear-3: rgb(255, 255, 255);
+
+  --color-scrollbar: #3f3f46;
+  --color-scrollbar-track: var(--color-secondary-bg-transparent);
+
   --font-title: "BoldPixel", sans-serif;
+}
+
+:root {
+  --tw-scrollbar: thin;
+  --tw-scrollbar-thumb: var(--color-scrollbar);
+  --tw-scrollbar-track: var(--color-scrollbar-track);
+
+  --scrollbar-width: thin;
+  --scrollbar-thumb-color: var(--color-scrollbar);
+  --scrollbar-track-color: var(--color-scrollbar-track);
+
+  scrollbar-width: var(--scrollbar-width);
+  scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
 }

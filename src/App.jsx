@@ -14,7 +14,7 @@ const BackGroundlasers = () => {
   useEffect(() => {
     const timer1 = setTimeout(() => {
       setShowInnerLaser(true);
-    }, 1200); // Show after 3 seconds
+    }, 1100); // Show after 3 seconds
 
     // Hide after another 3 seconds
     const timer2 = setTimeout(() => {
@@ -239,7 +239,7 @@ const MoreLLasers = () => {
           repeatType: "mirror",
           // Add any additional properties here
         }}
-        className="w-50 h-1/2 bg-purple-500 absolute rounded-full -bottom-90 -left-80 blur-[20rem] z-10"
+        className="w-50 h-1/2 bg-purple-600 absolute rounded-full -bottom-60 -left-50 blur-[10rem] z-10"
       ></motion.div>
       <motion.div
         initial={{ opacity: 0.7, y: 3 }}
@@ -251,7 +251,7 @@ const MoreLLasers = () => {
           repeatType: "mirror",
           // Add any additional properties here
         }}
-        className="w-50 h-1/2 bg-purple-500 absolute rounded-full -top-90 -right-80 blur-[20rem] z-10"
+        className="w-50 h-1/2 bg-purple-600 absolute rounded-full -top-60 -right-50 blur-[10rem] z-10"
       ></motion.div>
     </>
   );
@@ -287,12 +287,12 @@ const MainContent = ({ matchMenu, setMatchMenu }) => {
           }}
           className="absolute bottom-5 right-10  font-bold text-text z-500 select-none font-title"
         >
-          <h1 className="flex items-center justify-center gap-2 bg-accent px-2 py-1 rounded-full text-black">
+          {/* <h1 className="flex items-center justify-center gap-2 bg-accent px-2 py-1 rounded-full text-black">
             Add User
             <span>
               <FaUserPlus />
             </span>
-          </h1>
+          </h1> */}
         </motion.div>
         <div className="w-full h-full opacity-30  absolute z-70">
           <img
@@ -410,41 +410,104 @@ const MainContent = ({ matchMenu, setMatchMenu }) => {
   );
 };
 
-const MatchingContent = () => {
-  return (
-    <div className="w-1/2 h-full absolute top-20 right-0 z-500 ">
-      <section>
-        <h1>Fingerprints Informations</h1>
-        <div className="flex flex-wrap gap-2 mt-5  ">
-          {fingerprints.map((fingerprint, index) => (
-            <div
-              className="p-1 bg-gray-600 rounded-xl overflow-hidden border-4 border-white w-32 h-40 "
-              key={index}
-            >
-              <div className="w-full h-[70%] p-3">
-                <img
-                  src={fingerprint.img}
-                  alt={`Fingerprint ${index}`}
-                  className="w-full h-full object-cover "
-                />
-              </div>
-              <div className="text-sm flex flex-wrap items-center justify-between text-white w-full px-3">
-                <p>{fingerprint.match}</p>
-                <p className="w-full flex items-center justify-between">
-                  <span className="">Accuracy</span>
-                  {fingerprint.accuracy}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-      <section>
-        <h1>User Informations</h1>
-      </section>
-    </div>
-  );
-};
+// const MatchingContent = () => {
+//   return (
+//     <div className="w-1/2 h-[80vh] absolute top-15 right-10 z-500 overflow-y-scroll text-right ">
+//       <h1 className="text-2xl font-bold text-text m-2 mt-0 select-none font-title p-2 bg-crystal-clear-00 rounded-xl inline-block text-right ml-auto">
+//         Fingerprints Informations
+//       </h1>
+//       <div className="flex flex-wrap gap-2 justify-end text-start ">
+//         {fingerprints.map((fingerprint, index) => (
+//           <div
+//             className="p-1 bg-crystal-clear-0d rounded-xl overflow-hidden border-4 border-crystal-clear-00 w-35 h-45 "
+//             key={index}
+//           >
+//             <div className="w-full h-[70%] p-3">
+//               <img
+//                 src={fingerprint.img}
+//                 alt={`Fingerprint ${index}`}
+//                 className="w-full h-full object-cover"
+//               />
+//             </div>
+//             <div className="text-sm flex flex-wrap items-center justify-between text-white font-bold w-full px-3">
+//               <p>{fingerprint.match}</p>
+//               <p className="w-full flex items-center justify-between">
+//                 <span className="">Accuracy</span>
+//                 {fingerprint.accuracy}
+//               </p>
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+
+//     <div className="w-1/2 h-[80vh] absolute top-15 right-10 z-500 overflow-y-scroll text-right overflow-x-hidden scrollbar-thin scrollbar-thumb-secondary-bg-border scrollbar-track-secondary-bg-transparent pr-2">
+//       <h1 className="text-2xl font-bold text-text m-2 mt-0 select-none font-title p-2 bg-crystal-clear-00 rounded-xl inline-block text-right ml-auto">
+//         Fingerprints Informations
+//       </h1>
+//       <h1 className="text-2xl font-bold text-text mt-0 select-none font-title p-2 bg-crystal-clear-00 rounded-xl inline-block text-right ml-auto">
+//         Total Matches: 7
+//       </h1>
+//       <div className="flex flex-wrap gap-2 justify-end text-start">
+//         {fingerprints.map((fingerprint, index) => (
+//           <div
+//             key={index}
+//             className="
+//         p-1 bg-crystal-clear-0d rounded-xl overflow-hidden border-4 border-crystal-clear-00 w-35 h-45
+//         transform-gpu will-change-transform transition-transform duration-100 ease-out cursor-pointer
+//       "
+//             onMouseMove={(e) => {
+//               const card = e.currentTarget;
+//               const rect = card.getBoundingClientRect();
+//               const x = e.clientX - rect.left;
+//               const y = e.clientY - rect.top;
+
+//               // Normalize to [-1, 1]
+//               const px = (x / rect.width) * 2 - 1;
+//               const py = (y / rect.height) * 2 - 1;
+
+//               const maxDeg = 10; // tilt strength
+//               const rotY = px * maxDeg; // left/right
+//               const rotX = -py * maxDeg; // up/down
+
+//               card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
+//             }}
+//             onMouseLeave={(e) => {
+//               const card = e.currentTarget;
+//               card.style.transition = "transform 200ms ease-in";
+//               card.style.transform =
+//                 "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
+//               // restore the quicker transition after the reset finishes
+//               setTimeout(
+//                 () => (card.style.transition = "transform 100ms ease-out"),
+//                 200
+//               );
+//             }}
+//             onMouseEnter={(e) => {
+//               const card = e.currentTarget;
+//               card.style.transition = "transform 100ms ease-out";
+//             }}
+//           >
+//             <div className="w-full h-[70%] p-3">
+//               <img
+//                 src={fingerprint.img}
+//                 alt={`Fingerprint ${index}`}
+//                 className="w-full h-full object-cover"
+//               />
+//             </div>
+//             <div className="text-sm flex flex-wrap items-center justify-between text-white font-bold w-full px-3">
+//               <p>{fingerprint.match}</p>
+//               <p className="w-full flex items-center justify-between">
+//                 <span>Accuracy</span>
+//                 {fingerprint.accuracy}
+//               </p>
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
 
 function App() {
   // const [paddings, setPaddings] = useState({
@@ -534,7 +597,7 @@ function App() {
       ) : (
         <>
           <MainContent matchMenu={matchMenu} setMatchMenu={setMatchMenu} />
-          {matchMenu && <MatchingContent />}
+          {/* {matchMenu && <MatchingContent />} */}
         </>
       )}
     </>
