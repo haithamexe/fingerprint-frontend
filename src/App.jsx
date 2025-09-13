@@ -297,9 +297,10 @@ const MainContent = ({ matchMenu, setMatchMenu }) => {
           />
         </div>
         <div
-          className="w-80 h-80
-        absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100
-       bg-secondary-bg rounded-4xl  overflow-hidden opacity-70"
+          className={
+            "w-80 h-80 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100 bg-secondary-bg rounded-4xl  overflow-hidden opacity-70" +
+            (matchMenu ? " left-50 " : " left-1/2 ")
+          }
         >
           <img src="" className=" object-cover w-90 h-90 bg-secondary-bg " />
         </div>
@@ -349,13 +350,13 @@ const MainContent = ({ matchMenu, setMatchMenu }) => {
           <div
             className={
               "w-80 h-80 absolute top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100 bg-secondary-bg-transparent rounded-3xl border-13 border-secondary-bg-border overflow-hidden opacity-100" +
-              (matchMenu ? " left-1/5 " : " left-1/2 ")
+              (matchMenu ? " left-50 " : " left-1/2 ")
             }
           ></div>
           <motion.div
             className={
               "w-40 h-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-90 pointer-events-none " +
-              (matchMenu ? " left-1/5 " : " left-1/2 ")
+              (matchMenu ? " left-50 " : " left-1/2 ")
             }
           >
             <DotLottieReact
@@ -391,7 +392,7 @@ const MainContent = ({ matchMenu, setMatchMenu }) => {
             viewport={{ once: true }}
             className={
               "absolute bottom-[16vh] left-1/2 transform -translate-x-1/2 text-[1.75rem]  font-bold text-text z-500 select-none font-title bg-secondary-bg  rounded-2xl border-10 border-secondary-bg-border w-80 h-20 flex items-center justify-center" +
-              (matchMenu ? " left-1/5 " : " left-1/2 ")
+              (matchMenu ? " left-50 " : " left-1/2 ")
             }
           >
             Scan Your Fingerprint
