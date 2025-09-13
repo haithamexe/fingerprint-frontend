@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @font-face {
   font-family: "BoldPixel";
   src: url("/fonts/BoldPixels.ttf") format("truetype"),
@@ -20,6 +22,16 @@
   --color-border: #313244;
   --color-input-bg: #313244;
   --color-input-text: #cdd6f4;
+
+  --color-white-100: #ffffff;
+  --color-white-200: #d6d6d6;
+  --color-white-300: #9b9b9b;
+  --color-white-400: #ffffff;
+  --color-white-500: #ffffff;
+  --color-white-600: #7f7f7f;
+  --color-white-700: #ffffff;
+  --color-white-800: #ffffff;
+  --color-white-900: #464646;
 
   --color-crystal-clear-00: rgba(201, 201, 201, 0.178);
   --color-crystal-clear-0: rgba(107, 107, 107, 0.207);

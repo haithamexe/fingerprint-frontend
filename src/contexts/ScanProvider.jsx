@@ -12,6 +12,13 @@ const ScanProvider = ({ children }) => {
   const [startButton, setStartButton] = useState(false);
   const [matching, setMatching] = useState({});
 
+  // http://10.21.54.37:8081/match?id=a7cd355294e245e8be36fba91eb4d39b
+
+  // accuracy  99.38
+  // matched_image  "1__M_Right_ring_finger_Obl.BMP"
+  const backHostCall =
+    "http://10.21.54.37:8081/match?id=a7cd355294e245e8be36fba91eb4d39b";
+
   const scanHost = import.meta.env.VITE_SCAN_HOST;
   const matchingHost = import.meta.env.VITE_MATCHING_HOST;
 
@@ -29,6 +36,22 @@ const ScanProvider = ({ children }) => {
       console.log("Device not connected");
     }
   };
+
+  const fetchBack = (url) => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setMatching(data);
+        console.log("Back host response:", data);
+      })
+      .catch((error) => {
+        console.error("Error fetching back host:", error);
+      });
+  };
+
+  useEffect(() => {
+    fetchBack(backHostCall);
+  }, [scanLoading]);
 
   useEffect(() => {
     fetchDeviceStatus();
