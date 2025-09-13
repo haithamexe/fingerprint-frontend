@@ -3,6 +3,9 @@ import { AnimatePresence, motion } from "motion/react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { FaUserPlus } from "react-icons/fa";
 
+import fingerprintUrl from "./assets/images/fingerprint-2.png";
+import patternUrl from "./assets/images/pattern-small.png";
+
 const BackGroundlasers = () => {
   const [showInnerLaser, setShowInnerLaser] = useState(false);
   const [redo, setRedo] = useState(false);
@@ -292,7 +295,8 @@ const MainContent = ({ matchMenu, setMatchMenu }) => {
         </motion.div>
         <div className="w-full h-full opacity-30  absolute z-70">
           <img
-            src="/images/pattern-small.png"
+            // src="/images/pattern-small.png"
+            src={patternUrl}
             className="absolute inset-0 w-full h-full object-cover opacity-100 z-0 "
           />
         </div>
@@ -363,6 +367,7 @@ const MainContent = ({ matchMenu, setMatchMenu }) => {
               src="https://lottie.host/b41ed688-7bdf-4fd6-b809-92d8f2c71c2f/pPrsLcCXpK.lottie"
               loop
               autoplay
+              muted
               style={{
                 width: "100%",
                 height: "100%",
@@ -376,7 +381,8 @@ const MainContent = ({ matchMenu, setMatchMenu }) => {
             />
 
             <img
-              src="/images/fingerprint-2.png"
+              // src="/images/fingerprint-2.png"
+              src={fingerprintUrl}
               className="w-full h-full object-cover"
             />
           </motion.div>
@@ -481,6 +487,7 @@ function App() {
                 src="https://lottie.host/cfdb9a9c-9dce-458e-b9d3-6829847db2ec/FdYZECv8Wa.lottie"
                 loop
                 autoplay
+                muted
                 speed={2}
                 style={{ width: "100%", height: "100%" }}
               />
