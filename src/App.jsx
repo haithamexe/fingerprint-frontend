@@ -371,6 +371,20 @@ const MainContent = () => {
             className="w-full h-full object-cover"
           />
         </motion.div>
+        <motion.h1
+          initial={{ y: "100%", opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{
+            duration: 0.5,
+            type: "spring",
+            stiffness: 90,
+            damping: 20,
+          }}
+          viewport={{ once: true }}
+          className="absolute bottom-50 left-1/2 transform -translate-x-1/2 text-[1.75rem]  font-bold text-text z-500 select-none font-title bg-secondary-bg  rounded-2xl border-10 border-secondary-bg-border w-80 h-20 flex items-center justify-center"
+        >
+          Scan Your Fingerprint
+        </motion.h1>
       </div>
     </>
   );
