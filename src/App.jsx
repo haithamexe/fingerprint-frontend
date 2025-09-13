@@ -129,7 +129,7 @@ const BackGroundlasers = () => {
         className="w-73 h-2 bg-green-500 absolute top-[6%] left-[50%] transform -translate-x-1/2 z-300"
         style={{ opacity: showInnerLaser ? 1 : 0 }}
       ></motion.div>
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{
@@ -140,6 +140,21 @@ const BackGroundlasers = () => {
           delay: 1,
 
           repeatDelay: 1,
+          // Add any additional properties here
+        }}
+        className="w-5 h-5 bg-red-500 absolute rounded-full right-10 top-8 z-500"
+      ></motion.div> */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: 0.4,
+          repeat: Infinity,
+          ease: "easeInOut",
+          repeatType: "mirror",
+          delay: 0.8,
+
+          repeatDelay: 0.4,
           // Add any additional properties here
         }}
         className="w-5 h-5 bg-red-500 absolute rounded-full right-10 top-8 z-500"
@@ -207,6 +222,37 @@ const textGlitchEffect = (e) => {
   }, 30);
 };
 
+const MoreLLasers = () => {
+  return (
+    <>
+      <motion.div
+        initial={{ opacity: 0.7, y: 3 }}
+        animate={{ opacity: 1, y: -3 }}
+        transition={{
+          duration: 0.8,
+          repeat: Infinity,
+          ease: "easeInOut",
+          repeatType: "mirror",
+          // Add any additional properties here
+        }}
+        className="w-50 h-1/2 bg-purple-500 absolute rounded-full -bottom-90 -left-80 blur-[20rem] z-10"
+      ></motion.div>
+      <motion.div
+        initial={{ opacity: 0.7, y: 3 }}
+        animate={{ opacity: 1, y: -3 }}
+        transition={{
+          duration: 0.8,
+          repeat: Infinity,
+          ease: "easeInOut",
+          repeatType: "mirror",
+          // Add any additional properties here
+        }}
+        className="w-50 h-1/2 bg-purple-500 absolute rounded-full -top-90 -right-80 blur-[20rem] z-10"
+      ></motion.div>
+    </>
+  );
+};
+
 function App() {
   // const [paddings, setPaddings] = useState({
   //   paddingTop: window.innerHeight / 2,
@@ -246,7 +292,6 @@ function App() {
           className=""
         />
       </div>
-
       <motion.div
         initial={{ scale: 0.9, y: 10, opacity: 0 }}
         animate={{ scale: 1, y: 0, opacity: 1 }}
@@ -268,14 +313,12 @@ function App() {
           </span>
         </h1>
       </motion.div>
-
       <div className="w-full h-full opacity-20  absolute z-70">
         <img
           src="/images/pattern-small.png"
           className="absolute inset-0 w-full h-full object-cover opacity-100 z-0 "
         />
       </div>
-
       <div
         className="w-80 h-80
         absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100
@@ -289,7 +332,6 @@ function App() {
         absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100
        bg-secondary-bg-transparent rounded-3xl border-13 border-secondary-bg-border overflow-hidden opacity-100"
       ></div>
-
       {/* <div
         id="spotlight"
         className="w-96 h-96
@@ -329,6 +371,7 @@ function App() {
         className="w-50 h-50 absolute z-40 bg-red-500 rounded-full left-1/3 bottom-1/5 blur-[6rem] opacity-40"
       ></motion.div> */}
       <BackGroundlasers />
+      <MoreLLasers />
       <div className="w-40 h-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-90 pointer-events-none">
         <img
           src="/images/fingerprint-2.png"
