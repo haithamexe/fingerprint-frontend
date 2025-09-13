@@ -6,6 +6,7 @@ import { FaUserPlus } from "react-icons/fa";
 import fingerprintUrl from "./assets/images/fingerprint-2.png";
 import patternUrl from "./assets/images/pattern-small.png";
 import fingerprints from "./utils/fingerprints";
+import { useScan } from "./contexts/ScanProvider.jsx";
 
 const BackGroundlasers = () => {
   const [showInnerLaser, setShowInnerLaser] = useState(false);
@@ -257,7 +258,14 @@ const MoreLLasers = () => {
   );
 };
 
-const MainContent = ({ matchMenu, setMatchMenu }) => {
+const MainContent = ({
+  matchMenu,
+  setMatchMenu,
+  startButton,
+  setStartButton,
+  matching,
+  setMatching,
+}) => {
   return (
     <>
       <div className="w-screen h-screen bg-bg relative overflow-hidden">
@@ -398,11 +406,14 @@ const MainContent = ({ matchMenu, setMatchMenu }) => {
             }}
             viewport={{ once: true }}
             className={
-              "absolute bottom-[16vh] left-1/2 transform -translate-x-1/2 text-[1.75rem]  font-bold text-text z-500 select-none font-title bg-secondary-bg  rounded-2xl border-10 border-secondary-bg-border w-80 h-20 flex items-center justify-center" +
+              "absolute bottom-[16vh] left-1/2 transform -translate-x-1/2 text-[1.75rem]  font-bold text-text z-500 select-none font-title bg-secondary-bg  rounded-2xl border-10 border-secondary-bg-border w-80 h-20 flex items-center justify-center cursor-pointer" +
               (matchMenu ? " left-50 " : " left-1/2 ")
             }
+            onClick={() => {
+              setStartButton(true);
+            }}
           >
-            Scan Your Fingerprint
+            {!startButton ? "Start Scanning" : "Scanning..."}
           </motion.h1>
         </>
       </div>
@@ -518,6 +529,7 @@ function App() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [matchMenu, setMatchMenu] = useState(false);
   const [loading, setLoading] = useState(true);
+  const { matching, setStartButton, startButton } = useScan();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -596,7 +608,14 @@ function App() {
         </AnimatePresence>
       ) : (
         <>
-          <MainContent matchMenu={matchMenu} setMatchMenu={setMatchMenu} />
+          <MainContent
+            startButton={startButton}
+            setStartButton={setStartButton}
+            matching={matching}
+            matchMenu={matchMenu}
+            setMatchMenu={setMatchMenu}
+          />
+
           {/* {matchMenu && <MatchingContent />} */}
         </>
       )}
