@@ -265,6 +265,7 @@ const MainContent = ({
   setStartButton,
   matching,
   setMatching,
+  moveLoader,
 }) => {
   return (
     <>
@@ -312,7 +313,7 @@ const MainContent = ({
         <div
           className={
             "w-80 h-80 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100 bg-secondary-bg rounded-4xl  overflow-hidden opacity-70" +
-            (matchMenu ? " left-50 " : " left-1/2 ")
+            (moveLoader ? " left-50 " : " left-1/2 ")
           }
         >
           <img src="" className=" object-cover w-90 h-90 bg-secondary-bg " />
@@ -357,37 +358,57 @@ const MainContent = ({
         id="spotlight"
         className="w-50 h-50 absolute z-40 bg-red-500 rounded-full left-1/3 bottom-1/5 blur-[6rem] opacity-40"
       ></motion.div> */}
-        {!matchMenu && <BackGroundlasers />}
+        {!moveLoader && <BackGroundlasers />}
         <MoreLLasers />
         <>
           <div
             className={
               "w-80 h-80 absolute top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100 bg-secondary-bg-transparent rounded-3xl border-13 border-secondary-bg-border overflow-hidden opacity-100" +
-              (matchMenu ? " left-50 " : " left-1/2 ")
+              (moveLoader ? " left-50 " : " left-1/2 ")
             }
           ></div>
           <motion.div
             className={
               "w-40 h-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-90 pointer-events-none " +
-              (matchMenu ? " left-50 " : " left-1/2 ")
+              (moveLoader ? " left-50 " : " left-1/2 ")
             }
           >
-            <DotLottieReact
-              src="https://lottie.host/b41ed688-7bdf-4fd6-b809-92d8f2c71c2f/pPrsLcCXpK.lottie"
-              loop
-              autoplay
-              muted
-              style={{
-                width: "100%",
-                height: "100%",
-                filter: "grayscale(1) brightness(0.001)    invert(1)",
-                position: "absolute",
-                top: 0,
-                left: 0,
-                opacity: 0.3,
-              }}
-              speed={0.7}
-            />
+            {!startButton ? (
+              <DotLottieReact
+                src="https://lottie.host/b41ed688-7bdf-4fd6-b809-92d8f2c71c2f/pPrsLcCXpK.lottie"
+                loop
+                autoplay
+                muted
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  filter: "grayscale(1) brightness(0.001)    invert(1)",
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  opacity: 0.3,
+                }}
+                speed={0.7}
+              />
+            ) : (
+              <DotLottieReact
+                // src="https://lottie.host/b41ed688-7bdf-4fd6-b809-92d8f2c71c2f/pPrsLcCXpK.lottie"
+                src="https://lottie.host/cfdb9a9c-9dce-458e-b9d3-6829847db2ec/FdYZECv8Wa.lottie"
+                loop
+                autoplay
+                muted
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  opacity: 1,
+                  zIndex: 500,
+                }}
+                speed={0.7}
+              />
+            )}
 
             <img
               // src="/images/fingerprint-2.png"
@@ -406,14 +427,18 @@ const MainContent = ({
             }}
             viewport={{ once: true }}
             className={
-              "absolute bottom-[16vh] left-1/2 transform -translate-x-1/2 text-[1.75rem]  font-bold text-text z-500 select-none font-title bg-secondary-bg  rounded-2xl border-10 border-secondary-bg-border w-80 h-20 flex items-center justify-center cursor-pointer" +
-              (matchMenu ? " left-50 " : " left-1/2 ")
+              "absolute bottom-[16vh] left-1/2 transform -translate-x-1/2 text-[1.75rem]  font-bold text-text z-500 select-none font-title bg-secondary-bg  rounded-2xl border-10 border-secondary-bg-border w-80 h-20 flex items-center justify-center cursor-pointer " +
+              (moveLoader ? " left-50 " : " left-1/2 ") +
+              (startButton ? " animate-pulse " : "")
             }
+            style={{
+              color: matching ? "#34D399" : "#FFFFFF",
+            }}
             onClick={() => {
               setStartButton(true);
             }}
           >
-            {matching
+            {moveLoader
               ? "Matched"
               : !startButton
               ? "Start Scanning"
@@ -425,104 +450,75 @@ const MainContent = ({
   );
 };
 
-// const MatchingContent = () => {
-//   return (
-//     <div className="w-1/2 h-[80vh] absolute top-15 right-10 z-500 overflow-y-scroll text-right ">
-//       <h1 className="text-2xl font-bold text-text m-2 mt-0 select-none font-title p-2 bg-crystal-clear-00 rounded-xl inline-block text-right ml-auto">
-//         Fingerprints Informations
-//       </h1>
-//       <div className="flex flex-wrap gap-2 justify-end text-start ">
-//         {fingerprints.map((fingerprint, index) => (
-//           <div
-//             className="p-1 bg-crystal-clear-0d rounded-xl overflow-hidden border-4 border-crystal-clear-00 w-35 h-45 "
-//             key={index}
-//           >
-//             <div className="w-full h-[70%] p-3">
-//               <img
-//                 src={fingerprint.img}
-//                 alt={`Fingerprint ${index}`}
-//                 className="w-full h-full object-cover"
-//               />
-//             </div>
-//             <div className="text-sm flex flex-wrap items-center justify-between text-white font-bold w-full px-3">
-//               <p>{fingerprint.match}</p>
-//               <p className="w-full flex items-center justify-between">
-//                 <span className="">Accuracy</span>
-//                 {fingerprint.accuracy}
-//               </p>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
+const MatchingContent = () => {
+  return (
+    <div className="w-1/2 h-[80vh] absolute top-15 right-10 z-500 overflow-y-scroll text-right overflow-x-hidden scrollbar-thin scrollbar-thumb-secondary-bg-border scrollbar-track-secondary-bg-transparent pr-2">
+      <h1 className="text-2xl font-bold text-text m-2 mt-0 select-none font-title p-2 bg-crystal-clear-00 rounded-xl inline-block text-right ml-auto">
+        Fingerprints Informations
+      </h1>
+      <h1 className="text-2xl font-bold text-text mt-0 select-none font-title p-2 bg-crystal-clear-00 rounded-xl inline-block text-right ml-auto">
+        Total Matches: 1
+      </h1>
+      <div className="flex flex-wrap gap-2 justify-end text-start">
+        {fingerprints.map((fingerprint, index) => (
+          <div
+            key={index}
+            className="
+        p-1 bg-crystal-clear-0d rounded-xl overflow-hidden border-4 border-crystal-clear-00 w-80 h-100 mt-2
+        transform-gpu will-change-transform transition-transform duration-100 ease-out cursor-pointer
+      "
+            onMouseMove={(e) => {
+              const card = e.currentTarget;
+              const rect = card.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
 
-//     <div className="w-1/2 h-[80vh] absolute top-15 right-10 z-500 overflow-y-scroll text-right overflow-x-hidden scrollbar-thin scrollbar-thumb-secondary-bg-border scrollbar-track-secondary-bg-transparent pr-2">
-//       <h1 className="text-2xl font-bold text-text m-2 mt-0 select-none font-title p-2 bg-crystal-clear-00 rounded-xl inline-block text-right ml-auto">
-//         Fingerprints Informations
-//       </h1>
-//       <h1 className="text-2xl font-bold text-text mt-0 select-none font-title p-2 bg-crystal-clear-00 rounded-xl inline-block text-right ml-auto">
-//         Total Matches: 7
-//       </h1>
-//       <div className="flex flex-wrap gap-2 justify-end text-start">
-//         {fingerprints.map((fingerprint, index) => (
-//           <div
-//             key={index}
-//             className="
-//         p-1 bg-crystal-clear-0d rounded-xl overflow-hidden border-4 border-crystal-clear-00 w-35 h-45
-//         transform-gpu will-change-transform transition-transform duration-100 ease-out cursor-pointer
-//       "
-//             onMouseMove={(e) => {
-//               const card = e.currentTarget;
-//               const rect = card.getBoundingClientRect();
-//               const x = e.clientX - rect.left;
-//               const y = e.clientY - rect.top;
+              // Normalize to [-1, 1]
+              const px = (x / rect.width) * 2 - 1;
+              const py = (y / rect.height) * 2 - 1;
 
-//               // Normalize to [-1, 1]
-//               const px = (x / rect.width) * 2 - 1;
-//               const py = (y / rect.height) * 2 - 1;
+              const maxDeg = 10; // tilt strength
+              const rotY = px * maxDeg; // left/right
+              const rotX = -py * maxDeg; // up/down
 
-//               const maxDeg = 10; // tilt strength
-//               const rotY = px * maxDeg; // left/right
-//               const rotX = -py * maxDeg; // up/down
-
-//               card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
-//             }}
-//             onMouseLeave={(e) => {
-//               const card = e.currentTarget;
-//               card.style.transition = "transform 200ms ease-in";
-//               card.style.transform =
-//                 "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
-//               // restore the quicker transition after the reset finishes
-//               setTimeout(
-//                 () => (card.style.transition = "transform 100ms ease-out"),
-//                 200
-//               );
-//             }}
-//             onMouseEnter={(e) => {
-//               const card = e.currentTarget;
-//               card.style.transition = "transform 100ms ease-out";
-//             }}
-//           >
-//             <div className="w-full h-[70%] p-3">
-//               <img
-//                 src={fingerprint.img}
-//                 alt={`Fingerprint ${index}`}
-//                 className="w-full h-full object-cover"
-//               />
-//             </div>
-//             <div className="text-sm flex flex-wrap items-center justify-between text-white font-bold w-full px-3">
-//               <p>{fingerprint.match}</p>
-//               <p className="w-full flex items-center justify-between">
-//                 <span>Accuracy</span>
-//                 {fingerprint.accuracy}
-//               </p>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
+              card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
+            }}
+            onMouseLeave={(e) => {
+              const card = e.currentTarget;
+              card.style.transition = "transform 200ms ease-in";
+              card.style.transform =
+                "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
+              // restore the quicker transition after the reset finishes
+              setTimeout(
+                () => (card.style.transition = "transform 100ms ease-out"),
+                200
+              );
+            }}
+            onMouseEnter={(e) => {
+              const card = e.currentTarget;
+              card.style.transition = "transform 100ms ease-out";
+            }}
+          >
+            <div className="w-full h-[70%] p-3">
+              <img
+                src={fingerprint.img}
+                alt={`Fingerprint ${index}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="text-sm flex flex-wrap items-center justify-between text-white font-bold w-full px-3">
+              <p>{fingerprint.match}</p>
+              <p className="w-full flex items-center justify-between">
+                <span>Accuracy</span>
+                {fingerprint.accuracy}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 function App() {
   // const [paddings, setPaddings] = useState({
@@ -533,7 +529,7 @@ function App() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [matchMenu, setMatchMenu] = useState(false);
   const [loading, setLoading] = useState(true);
-  const { matching, setStartButton, startButton } = useScan();
+  const { matching, setStartButton, startButton, isMatching } = useScan();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -574,6 +570,8 @@ function App() {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+
+  const moveLoader = matching.length > 0 || isMatching;
 
   return (
     <>
@@ -618,9 +616,10 @@ function App() {
             matching={matching}
             matchMenu={matchMenu}
             setMatchMenu={setMatchMenu}
+            moveLoader={moveLoader}
           />
 
-          {/* {matchMenu && <MatchingContent />} */}
+          {(matchMenu || moveLoader) && <MatchingContent />}
         </>
       )}
     </>
