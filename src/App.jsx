@@ -3,6 +3,33 @@ import { motion } from "motion/react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const BackGroundlasers = () => {
+  const [showInnerLaser, setShowInnerLaser] = useState(false);
+  const [redo, setRedo] = useState(false);
+
+  useEffect(() => {
+    const timer1 = setTimeout(() => {
+      setShowInnerLaser(true);
+    }, 1200); // Show after 3 seconds
+
+    // Hide after another 3 seconds
+    const timer2 = setTimeout(() => {
+      setShowInnerLaser(false);
+    }, 1600);
+
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, [redo]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRedo((prev) => !prev);
+    }, 3300); // Repeat every 6 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
       <motion.div
@@ -80,6 +107,26 @@ const BackGroundlasers = () => {
           repeatDelay: 0.3,
         }}
         className="w-[70%] h-[2%] bg-green-500 absolute top-[5%] left-[15%] blur-[0.5rem] opacity-30"
+      ></motion.div>
+      <motion.div
+        initial={{ y: "-20vh" }}
+        animate={{ y: "120vh" }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut",
+
+          type: "tween",
+          stiffness: 100,
+          damping: 10,
+          mass: 0.5,
+          velocity: 0.5,
+          restDelta: 0.001,
+          restSpeed: 0.001,
+          repeatDelay: 0.3,
+        }}
+        className="w-73 h-2 bg-green-500 absolute top-[6%] left-[50%] transform -translate-x-1/2 z-300"
+        style={{ opacity: showInnerLaser ? 1 : 0 }}
       ></motion.div>
     </>
   );
@@ -181,15 +228,32 @@ function App() {
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="w-40 h-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100 pointer-events-none">
+      <motion.div
+        initial={{ scale: 3 }}
+        animate={{ scale: 1 }}
+        transition={{
+          duration: 0.6,
+          delay: 1.7,
+          type: "spring",
+          stiffness: 100,
+          damping: 10,
+          mass: 0.5,
+          velocity: 0.5,
+          restDelta: 0.001,
+          restSpeed: 0.001,
+          ease: "easeInOut",
+          bounce: 5,
+        }}
+        className="w-40 h-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100 pointer-events-none"
+      >
         <DotLottieReact
           src="https://lottie.host/b41ed688-7bdf-4fd6-b809-92d8f2c71c2f/pPrsLcCXpK.lottie"
           loop
           autoplay
-          speed={0.5}
+          speed={0.7}
           style={{ width: "100%", height: "100%" }}
         />
-      </div>
+      </motion.div>
     </div>
   );
 }
